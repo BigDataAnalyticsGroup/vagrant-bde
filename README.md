@@ -11,7 +11,7 @@ Throughout this lecture, we will make use of Jupyter notebooks. In order to exec
 
 ## Preliminary
 
-First, you have to download and install both [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and [Vagrant](https://www.vagrantup.com/downloads.html) for your operating system either through the downloads on the respective website or your systems package manager. Note that on macOS, you have to allow a kernel extension to be installed by VirtualBox under Security in your Settings.app. With the following commands, you can test if the installation was successful. Note that version numbers may slightly differ:
+First, you have to download and install both [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and [Vagrant](https://www.vagrantup.com/downloads.html) for your operating system either through the downloads on the respective website or your systems package manager. Note that on macOS, you have to allow a kernel extension to be installed by VirtualBox under Security in your Settings.app. Furthermore, the current versions in the official Ubuntu repository apparently do not work and have to be downloaded manually from the respective websites (also make sure to deinstall old versions). With the following commands, you can test if the installation was successful. Note that version numbers may slightly differ:
 ```sh
 $ VBoxManage -v
 6.1.32r149290
