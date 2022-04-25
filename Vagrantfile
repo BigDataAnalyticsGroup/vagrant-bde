@@ -37,12 +37,10 @@ Vagrant.configure("2") do |config|
     # Install system packages
     config.vm.provision "root-setup", type: "shell", privileged: true, run: "once", inline: <<-SHELL
         # Update system
-        echo "Updating system packages..."
-        pacman -Syu --noconfirm --quiet
-
-        # Update archlinux keyring
-        echo "Updating archlinux keyring..."
+        echo "Updating system packages and archlinux keyring..."
+        pacman -Syy --noconfirm --quiet
         pacman -S --noconfirm --quiet --needed archlinux-keyring
+        pacman -Su --noconfirm --quiet
 
         # Install development tools
         echo "Installing development tools..."
