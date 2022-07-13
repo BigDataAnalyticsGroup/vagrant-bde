@@ -105,6 +105,7 @@ Vagrant.configure("2") do |config|
         conda install -n bde -y --quiet pyspark
         conda install -n bde -y --quiet findspark
         conda install -n bde -y --quiet psycopg
+        conda install -n bde -y --quiet psycopg2
         conda install -n bde -y --quiet scrypt
         conda install -n bde -y --quiet seaborn
         conda install -n bde -y --quiet plotly
