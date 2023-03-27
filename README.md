@@ -7,27 +7,35 @@
 
 # Vagrant
 
-Throughout this lecture, we will make use of Jupyter notebooks. In order to execute these notebooks, we provide you with a virtual machine. This virtual machine is based on [VirtualBox](https://www.virtualbox.org/), [Vagrant](https://www.vagrantup.com/) acts as a middleman that lets us create and configure the virtual machine by means of a so called `Vagrantfile`. A `Vagrantfile` is basically a script that tells vagrant what commands to execute when first booting up the virtual machine. Whenever you interact with the virtual machine, you will do so through vagrant!
+Throughout this lecture, we will make use of Jupyter notebooks. In order to execute these notebooks, we provide you with a virtual machine. This virtual machine is based on [VirtualBox](https://www.virtualbox.org/), [Vagrant](https://www.vagrantup.com/) acts as a middleman that lets us create and configure the virtual machine by means of a so called `Vagrantfile`. A `Vagrantfile` is basically a script that tells Vagrant what commands to execute when first booting up the virtual machine. Whenever you interact with the virtual machine, you will do so through Vagrant!
 
 ## Preliminary
 
 First, you have to download and install both [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and [Vagrant](https://www.vagrantup.com/downloads.html) for your operating system either through the downloads on the respective website or your systems package manager. Note that on macOS, you have to allow a kernel extension to be installed by VirtualBox under Security in your Settings.app. Furthermore, the current versions in the official Ubuntu repository apparently do not work and have to be downloaded manually from the respective websites (also make sure to deinstall old versions). With the following commands, you can test if the installation was successful. Note that version numbers may slightly differ:
 ```sh
 $ VBoxManage -v
-6.1.32r149290
+7.0.6r155176
 $ vagrant -v
-Vagrant 2.2.19
+Vagrant 2.3.4
 ```
-Afterwards, download the [`Vagrantfile`](https://github.com/BigDataAnalyticsGroup/vagrant-bde/blob/main/Vagrantfile) and place it in an empty directory of your choice. Navigate to the directory and make sure that it only contains the `Vagrantfile`. In some cases, the `Vagrantfile` is assigned a suffix during download. In this case, the `Vagrantfile` has to be renamed to `Vagrantfile`. If you now list the contents of the directory you are currently in, you should receive the following output:
+Afterwards, download the [`Vagrantfile`](https://github.com/BigDataAnalyticsGroup/vagrant-bde/blob/main/Vagrantfile) and place it in an empty directory of your choice. Navigate to the directory and make sure that it only contains the `Vagrantfile`. In some cases, the `Vagrantfile` is assigned a suffix during download. In this case, the `Vagrantfile.<file extension>` has to be renamed to `Vagrantfile`. If you now list the contents of the directory you are currently in, you should receive the following output:
 ```sh
 $ ls
 Vagrantfile
 ```
 The `Vagrantfile` defines a virtual machine with [Arch Linux](https://www.archlinux.org/) as the operating system and contains several scripts for installing and configuring the required software on the virtual machine.
 
+
 ## Basic Usage
 
-Next, we explain the main functionality and usage of Vagrant. To start the virtual machine, execute the following command in the vagrant directory:
+Next, we explain the main functionality and usage of Vagrant.
+
+If you had Vagrant installed before (and downloaded the [Arch Linux Box](https://app.vagrantup.com/archlinux/boxes/archlinux)), make sure to update your current boxes.
+```sh
+$ vagrant box update
+```
+
+To start the virtual machine, execute the following command in the Vagrant directory:
 ```sh
 $ vagrant up
 Bringing machine 'bde_box' up with 'virtualbox' provider...
@@ -54,15 +62,22 @@ Bringing machine 'bde_box' up with 'virtualbox' provider...
 ==> bde_box: flag to force provisioning. Provisioners marked to run always will still run.
 ```
 When executed for the first time, this command creates the virtual machine and executes all configuration scripts. This process might take a while. Make sure to have a stable internet connection! (University Wifi is not a stable internet connection.) Don't panic if you see some red output on your terminal, this is perfectly fine.
-Afterwards, the virtual machine is running on your machine and you can connect to it via `ssh`. For this, use the following vagrant command:
+
+Afterwards, the virtual machine is running on your machine and you can connect to it via `ssh`. For this, use the following Vagrant command:
 ```sh
 $ vagrant ssh
-(bde) [vagrant@archlinux ~]$
+[vagrant@archlinux ~]$
 ```
-You have now successfully logged into your virtual machine. Your username and password are *vagrant*. This user has superuser privileges. 
+You have now successfully logged into your virtual machine. Your username and password are *vagrant*. This user has superuser privileges.
+By using the `ls` command inside the virtual machine, you will now see the shared folder:
+```sh
+[vagrant@archlinux ~]$ ls
+shared
+```
+
 To close the ssh connection you can use the `exit` command:
 ```sh
-(bde) [vagrant@archlinux ~]$ exit
+[vagrant@archlinux ~]$ exit
 logout
 Connection to 127.0.0.1 closed.
 ```
@@ -127,11 +142,11 @@ Now your virtual machine has access to the notebooks and is ready to execute the
 
 The Jupyter notebooks are executed inside the virtual machine but can be displayed in the browser of the local machine (this is achieved by forwarding the port 8888 of the virtual machine to your local machine). First, navigate to the directory containing the notebooks you would like to execute on the virtual machine, e.g. as follows:
 ```sh
-(bde) [vagrant@archlinux ~]$ cd shared/bigdataengineering
+[vagrant@archlinux ~]$ cd shared/bigdataengineering
 ```
 Then start the Jupyter notebook server on the virtual machine with the following command. Note that port forwarding only works if you provide the argument `--ip=0.0.0.0`.
 ```sh
-(bde) [vagrant@archlinux bigdataengineering]$ jupyter notebook --no-browser --ip=0.0.0.0
+[vagrant@archlinux bigdataengineering]$ jupyter notebook --no-browser --ip=0.0.0.0
 [I 14:17:27.944 NotebookApp] [jupyter_nbextensions_configurator] enabled 0.4.1
 [I 14:17:27.945 NotebookApp] Serving notebooks from local directory: /home/vagrant/shared/bigdataengineering
 [I 14:17:27.945 NotebookApp] Jupyter Notebook 6.4.10 is running at:
