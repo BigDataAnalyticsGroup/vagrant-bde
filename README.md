@@ -165,7 +165,7 @@ Then start the Jupyter notebook server on the virtual machine with the following
 To access the Jupyter server from your local browser, copy the link at the bottom containing the ip `127.0.0.1` (localhost) from the terminal, and paste it into the address bar of your browser. The Jupyter server opens in your browser and you see a similar page as below.
 ![Jupyter Notebook](https://i.imgur.com/0egNn9r.jpg)
 You can now execute the notebooks from the lecture.
-To stop the Jupyter server, you can press `Ctrl-C` in your terminal and afterwards, confirm with `y` and enter.
+To stop the Jupyter server, you can press `Ctrl-C` in your terminal and afterwards, confirm with `y` and `Enter` (or press `Ctrl-C` two times).
 ```sh
 ...
 [[I 10:43:52.825 NotebookApp] interrupted
@@ -187,6 +187,9 @@ $ vagrant up
 $ vagrant ssh
 $ cd shared/bigdataengineering
 $ jupyter notebook --no-browser --ip=0.0.0.0
-$ exit
+# Go to the browser on your host machine,
+# enter the link `http://127.0.0.1:8888/?token=...`,
+# and start working with the notebooks.
+$ exit # exit the virtual machine once you are finished working with the notebooks
 $ vagrant halt
 ```
