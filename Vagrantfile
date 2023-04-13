@@ -12,6 +12,7 @@ Vagrant.configure("2") do |config|
     # Network Settings
     config.vm.hostname = "archlinux"
     config.vm.network "forwarded_port", guest: 8888, host: 8888 # Jupyter
+    config.vm.network "forwarded_port", guest: 8000, host: 8000 # Django
 
     # Folder Settings
     config.vm.synced_folder ".", "/vagrant", disabled: true
@@ -102,6 +103,9 @@ Vagrant.configure("2") do |config|
         echo "Installing Python packages..."
 
         pip install altair==4.2.2 \
+                    django-bootstrap-v5==1.0.11 \
+                    django-extensions==3.2.1 \
+                    Django==4.2 \
                     duckdb==0.7.1 \
                     getmac==0.9.3 \
                     graphviz==0.20.1 \
@@ -124,8 +128,8 @@ Vagrant.configure("2") do |config|
                     scipy==1.10.1 \
                     scrypt==0.8.20 \
                     seaborn==0.12.2 \
-                    sqlparse==0.4.3 \
                     SQLAlchemy==1.4.46 \
+                    sqlparse==0.4.3 \
                     tqdm==4.65.0 \
                     vega-datasets==0.9.0
 
