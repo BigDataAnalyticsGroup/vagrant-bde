@@ -106,6 +106,7 @@ Vagrant.configure("2") do |config|
                     django-bootstrap-v5==1.0.11 \
                     django-extensions==3.2.1 \
                     Django==4.2 \
+                    djangorestframework==3.14.0 \
                     duckdb==0.7.1 \
                     getmac==0.9.3 \
                     graphviz==0.20.1 \
