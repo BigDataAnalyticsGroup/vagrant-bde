@@ -132,7 +132,8 @@ Vagrant.configure("2") do |config|
                     SQLAlchemy==1.4.46 \
                     sqlparse==0.4.3 \
                     tqdm==4.65.0 \
-                    vega-datasets==0.9.0
+                    vega-datasets==0.9.0 \
+                    wordcloud==1.9.2
 
         jupyter contrib nbextension install --user
         jupyter nbextension enable varInspector/main
