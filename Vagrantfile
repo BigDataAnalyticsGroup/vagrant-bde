@@ -110,13 +110,12 @@ Vagrant.configure("2") do |config|
         jupyter nbextension enable varInspector/main
     SHELL
 
-    # Install and configure Neo4j
-    config.vm.provision "neo4j-install", type: "shell", privileged: true, run: "once", inline: <<-SHELL
+    # Install Neo4j docker image
+    config.vm.provision "neo4j", type: "shell", privileged: true, run: "once", inline: <<-SHELL
         # Install Neo4j
         echo "Installing Neo4j..."
-        pikaur -S --noconfirm --noprogressbar neo4j-community
-
-        neo4j-admin dbms set-initial-password secretpassword # needs root privileges
-        systemctl enable neo4j --now
+        docker pull neo4j:5.18-community
+        docker run --name neo4j --publish=7474:7474 --publish=7687:7687 --volume=$HOME/neo4j/data:/data --env=NEO4J_AUTH=none -d neo4j:5.18-community
+        echo "docker start neo4j >/dev/null" >> /home/vagrant/.bashrc
     SHELL
 end
