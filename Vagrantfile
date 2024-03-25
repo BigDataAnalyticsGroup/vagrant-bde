@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
 
         # Install development tools
         echo "Installing development tools..."
-        pacman -S --noconfirm --quiet --needed base-devel git binutils tree neovim wget
+        pacman -S --noconfirm --quiet --needed base-devel git binutils tree neovim
 
         # Install Python, Virtualenv and Graphviz
         echo "Installing Python..."
@@ -102,9 +102,7 @@ Vagrant.configure("2") do |config|
     config.vm.provision "python-packages", type: "shell", privileged: false, run: "once", inline: <<-SHELL
         # Install Python packages
         echo "Installing Python packages..."
-
-        wget https://raw.githubusercontent.com/BigDataAnalyticsGroup/bigdataengineering/master/requirements.txt
-        pip install --user --break-system-packages -r requirements.txt
+        pip install --user --break-system-packages -r shared/requirements.txt # use requirements file from shared parent dir
 
         jupyter contrib nbextension install --user
         jupyter nbextension enable varInspector/main
