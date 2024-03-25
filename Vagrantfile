@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
 
         # Install development tools
         echo "Installing development tools..."
-        pacman -S --noconfirm --quiet --needed base-devel git binutils tree neovim
+        pacman -S --noconfirm --quiet --needed base-devel git binutils tree neovim wget
 
         # Install Python, Virtualenv and Graphviz
         echo "Installing Python..."
@@ -102,38 +102,8 @@ Vagrant.configure("2") do |config|
         # Install Python packages
         echo "Installing Python packages..."
 
-        pip install altair==4.2.2 \
-                    django-bootstrap-v5==1.0.11 \
-                    django-extensions==3.2.1 \
-                    Django==4.2 \
-                    djangorestframework==3.14.0 \
-                    duckdb==0.7.1 \
-                    getmac==0.9.3 \
-                    graphviz==0.20.1 \
-                    ipycanvas==0.13.1 \
-                    ipykernel==6.22.0 \
-                    ipython-genutils==0.2.0 \
-                    ipython==8.12.0 \
-                    ipywidgets==8.0.6 \
-                    jupyter-client==7.3.4 \
-                    jupyter-contrib-nbextensions==0.7.0 \
-                    matplotlib==3.7.1 \
-                    monotonic==1.6 \
-                    notebook==6.5.3 \
-                    numpy==1.24.2 \
-                    pandas==1.5.3 \
-                    pandasql==0.7.3 \
-                    psycopg==3.1.8 \
-                    py2neo==2021.2.3 \
-                    scikit-learn==1.2.2 \
-                    scipy==1.10.1 \
-                    scrypt==0.8.20 \
-                    seaborn==0.12.2 \
-                    SQLAlchemy==1.4.46 \
-                    sqlparse==0.4.3 \
-                    tqdm==4.65.0 \
-                    vega-datasets==0.9.0 \
-                    wordcloud==1.9.2
+        wget https://raw.githubusercontent.com/BigDataAnalyticsGroup/bigdataengineering/master/requirements.txt
+        pip install --user --break-system-packages -r requirements.txt
 
         jupyter contrib nbextension install --user
         jupyter nbextension enable varInspector/main
