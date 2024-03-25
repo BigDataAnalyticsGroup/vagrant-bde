@@ -89,9 +89,10 @@ Vagrant.configure("2") do |config|
         systemctl enable postgresql --now
     SHELL
 
-    ## Configure docker
-    config.vm.provision "docker", type: "shell", privileged: true, run: "once", inline: <<-SHELL
-        echo "Configuring docker..."
+    ## Configure AGE docker image
+    config.vm.provision "age", type: "shell", privileged: true, run: "once", inline: <<-SHELL
+        # Install AGE
+        echo "Installing AGE..."
         docker pull apache/age
         docker run --name age -p 5455:5432 -e POSTGRES_USER=postgresUser -e POSTGRES_PASSWORD=postgresPW -e POSTGRES_DB=postgresDB -d apache/age
         echo "docker start age >/dev/null" >> /home/vagrant/.bashrc
