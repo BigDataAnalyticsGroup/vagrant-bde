@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
 
     # Folder Settings
     config.vm.synced_folder ".", "/vagrant", disabled: true
-    config.vm.synced_folder "./shared", "/home/vagrant/shared", create: true
+    config.vm.synced_folder "..", "/home/vagrant/shared", create: true # share parent dir since vagrant-bde is subrepo
 
     # Provider Settings
     config.vm.provider "virtualbox" do |vb|

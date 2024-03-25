@@ -101,7 +101,7 @@ $ vagrant halt
 
 ## Shared Folder
 
-The virtual machine sets up a shared folder called `shared`. This folder is synchronized between the host (your local machine) and the guest (virtual machine). It allows to easily move files between the two systems. On the virtual machine, the folder is located in the home directory `/home/vagrant/shared`. On your local machine, the folder is located in the same directory as your `Vagrantfile`.
+The virtual machine sets up a shared folder called `shared`. This folder is synchronized between the host (your local machine) and the guest (virtual machine). It allows to easily move files between the two systems. On the virtual machine, the folder is located in the home directory `/home/vagrant/shared`. On your local machine, the folder is the parent directory of the directory where your `Vagrantfile` is located.
 
 ## Cheat Sheet
 
@@ -127,22 +127,29 @@ For more details, please visit the [official Vagrant documentation](https://www.
 
 # Workflow
 
-In this section, we will discuss the usual workflow when using vagrant in the context of this lecture. We assume that the virtual machine is already created and currently running.
+In this section, we will discuss the usual workflow when using vagrant in the context of this lecture.
 
 ## Clone the Repository
 
-On the host, clone [this repository](https://github.com/BigDataAnalyticsGroup/bigdataengineering) to the shared folder. Make sure, that submodules are also loaded by using the `--recursive` option.
+On the host, clone [this repository](https://github.com/BigDataAnalyticsGroup/bigdataengineering). Make sure, that submodules are also loaded by using the `--recursive` option.
 ```sh
-$ cd shared
 $ git clone --recursive https://github.com/BigDataAnalyticsGroup/bigdataengineering.git
 ```
-Now your virtual machine has access to the notebooks and is ready to execute them using Jupyter.
+
+Then, create the virtual machine contained in a submodule and connect to it as described above, e.g.
+```sh
+$ cd bigdataengineering/vagrant-bde
+$ vagrant up
+$ vagrant ssh
+```
+
+Your virtual machine automatically has access to the notebooks and is ready to execute them using Jupyter.
 
 ## Jupyter
 
 The Jupyter notebooks are executed inside the virtual machine but can be displayed in the browser of the local machine (this is achieved by forwarding the port 8888 of the virtual machine to your local machine). First, navigate to the directory containing the notebooks you would like to execute on the virtual machine, e.g. as follows:
 ```sh
-[vagrant@archlinux ~]$ cd shared/bigdataengineering
+[vagrant@archlinux ~]$ cd shared
 ```
 Then start the Jupyter notebook server on the virtual machine with the following command. Note that port forwarding only works if you provide the argument `--ip=0.0.0.0`.
 ```sh
@@ -185,7 +192,7 @@ All in all, your usual workflow after the initial setup should look similar to t
 $ cd /path/to/vagrant
 $ vagrant up
 $ vagrant ssh
-$ cd shared/bigdataengineering
+$ cd shared
 $ jupyter notebook --no-browser --ip=0.0.0.0
 # Go to the browser on your host machine,
 # enter the link `http://127.0.0.1:8888/?token=...`,
