@@ -18,12 +18,6 @@ $ VBoxManage -v
 $ vagrant -v
 Vagrant 2.3.4
 ```
-Afterwards, download the [`Vagrantfile`](https://github.com/BigDataAnalyticsGroup/vagrant-bde/blob/main/Vagrantfile) and place it in an empty directory of your choice. Navigate to the directory and make sure that it only contains the `Vagrantfile`. In some cases, the `Vagrantfile` is assigned a suffix during download. In this case, the `Vagrantfile.<file extension>` has to be renamed to `Vagrantfile`. If you now list the contents of the directory you are currently in, you should receive the following output:
-```sh
-$ ls
-Vagrantfile
-```
-The `Vagrantfile` defines a virtual machine with [Arch Linux](https://www.archlinux.org/) as the operating system and contains several scripts for installing and configuring the required software on the virtual machine.
 
 
 ## Basic Usage
@@ -35,7 +29,7 @@ If you had Vagrant installed before (and downloaded the [Arch Linux Box](https:/
 $ vagrant box update
 ```
 
-To start the virtual machine, execute the following command in the Vagrant directory:
+To start a virtual machine, execute the following command in the directory containing the `Vagrantfile` (how to get our `Vagrantfile` is explained below in the section `Workflow`):
 ```sh
 $ vagrant up
 Bringing machine 'bde_box' up with 'virtualbox' provider...
