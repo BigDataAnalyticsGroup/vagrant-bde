@@ -147,9 +147,9 @@ The Jupyter notebooks are executed inside the virtual machine but can be display
 ```
 Then start the Jupyter notebook server on the virtual machine with the following command. Note that port forwarding only works if you provide the argument `--ip=0.0.0.0`.
 ```sh
-[vagrant@archlinux bigdataengineering]$ jupyter notebook --no-browser --ip=0.0.0.0
+[vagrant@archlinux shared]$ jupyter notebook --no-browser --ip=0.0.0.0
 [I 14:17:27.944 NotebookApp] [jupyter_nbextensions_configurator] enabled 0.4.1
-[I 14:17:27.945 NotebookApp] Serving notebooks from local directory: /home/vagrant/shared/bigdataengineering
+[I 14:17:27.945 NotebookApp] Serving notebooks from local directory: /home/vagrant/shared
 [I 14:17:27.945 NotebookApp] Jupyter Notebook 6.4.10 is running at:
 [I 14:17:27.945 NotebookApp] http://archlinux:8888/?token=f2b2c5ea93d4d293b7ea7c208092da3b8abf2c08e93ffedb
 [I 14:17:27.945 NotebookApp]  or http://127.0.0.1:8888/?token=f2b2c5ea93d4d293b7ea7c208092da3b8abf2c08e93ffedb
